@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}재미있는 장고 공부{% endblock %}
+
+{% block content %}
+<br>
+<h1>Archive List {% now "Y m d" %}</h1>
+
+<br>
+{% for date in date_list %}
+<a href="{% url 'blog:post_year_archive' date|date:'Y' %}" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">{{date|date:'Y'}}</a>
+<!-- <li style="display: inline;"><a href="{% url 'blog:post_year_archive' date|date:'Y' %}"> Year-{{date|date:'Y'}} </a></li> -->
+{% endfor %}
+
+
+<br>
+<br>
+<div>
+    <ol class="list-group">
+        {% for post in object_list %}
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto"> 
+                <div class="fw-bold"><a href="{{post.get_absolute_url}}">{{post.title}}</a></div>
+                {{post.modify_dt | date:"Y-m-d"}}
+            </div>
+        </li>   
+        {% endfor %}
+    </ol>
+</div>
+
+<!-- {{date_list}} -->
+
+<!-- {{object_list}} -->
+
+{% endblock %}

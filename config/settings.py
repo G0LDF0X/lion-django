@@ -40,6 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'bookmark.apps.BookmarkConfig',
     'blog',
+    'taggit.apps.TaggitAppConfig',
+    'taggit_templatetags2',
+    'photo.apps.PhotoConfig'
 ]
 
 MIDDLEWARE = [
@@ -110,7 +113,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = 'ko-kr'
+LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'Asia/Seoul'
 
@@ -133,3 +136,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 import os
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media") # BASE_DIR/'media'
+
+TAGGIT_CASE_INSENSITIVE = True
+TAGGIT_LIMIT = 50
+
+# DISQUS 설정
+DISQUS_SHORTNAME = "lion-django-tutorial-2"
+DISQUS_MY_DOMAIN = 'http://127.0.0.1:8000'
+
+LOGIN_REDIRECT_URL = '/'
+# LOGIN_URL
+# LOGUOUT_REDIRECT_URL

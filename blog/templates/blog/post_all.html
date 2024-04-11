@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}재미있는 장고 공부{% endblock %}
+
+{% block content %}
+
+<br>
+<h1>BLOG POST LIST</h1>
+
+<br>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for post in posts %}
+    <div class="col">
+        <div class="card" style="width: 18rem;">
+            <img src="/static/img/lion.jpg">
+            <div class="card-body">
+                <h5 class="card-title">{{ post.title }}</h5>
+                <p class="card-text text-truncate">{{ post.content }}</p>
+                <a href="{{ post.get_absolute_url }}" class="btn btn-primary">읽어보기</a>
+            </div>
+            <div class="card-footer">
+                <small class="text-body-secondary">Modified : {{post.modify_dt|date:"Y년 n월 j일"}}</small>
+              </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<!-- {% for post in posts %}
+<h3><a href="{{ post.get_absolute_url }}">{{post.title}}</a></h3>
+{{post.modify_dt|date:"Y년 N d일"}}
+<p>{{post.content}}</p>
+{% endfor %}
+
+<br>
+
+<div>
+    <nav aria-label="...">
+        <ul class="pagination">
+        {% if page_obj.has_previous %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+          </li>
+          <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a></li>
+          {% endif %}
+          <li class="page-item active" aria-current="page">
+            <span class="page-link">{{ page_obj.number }}</span>
+          </li>
+          {% if page_obj.has_next %}
+          <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a></li>
+          <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+          </li>
+          {% endif %}
+        </ul>
+      </nav> -->
+
+    <!-- <span>
+        {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}">PreviousPage</a>
+        {% endif %}
+
+        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">NextPage</a>
+        {% endif %}
+    </span> -->
+
+<!-- </div> -->
+
+
+{% endblock %}

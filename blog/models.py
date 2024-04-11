@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from taggit.managers import TaggableManager
 # Create your models here.
 
 # idm title, slug, description, content, create_dt, modify_dt
@@ -11,6 +12,7 @@ class Post(models.Model):
     content = models.TextField('CONTENT')
     create_dt = models.DateTimeField('CREATE DATE', auto_now_add=True)
     modify_dt = models.DateTimeField('MODIFY DATE', auto_now=True)
+    tags = TaggableManager(blank=True)
 
     class Meta:
         verbose_name = 'post'
@@ -29,3 +31,12 @@ class Post(models.Model):
     
     def get_next(self):
         return self.get_next_by_modify_dt()
+
+"""    
+# Quesiton과 Choice 구조와 같습니다.
+class Comment(models.Model):
+    # user
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    comment = models.CharField(max_length=200)
+    # date ...
+"""
