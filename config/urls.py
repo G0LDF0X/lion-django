@@ -16,9 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from config.views import HomeView, UserCreateView, UserCreateTV
+from config.views import HomeView, UserCreateView, UserCreateDoneTV
 from django.conf.urls.static import static
 from django.conf import settings
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path("", HomeView.as_view(), name="Home"),
@@ -30,5 +31,5 @@ urlpatterns = [
     # 신규 작성
     path('accounts/', include('django.contrib.auth.urls')),
     path('account/register/', UserCreateView.as_view(), name="register"),
-    path('account/register/done', UserCreateTV.as_view(), name="register_done"),
+    path('account/register/done', UserCreateDoneTV.as_view(), name="register_done"),
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

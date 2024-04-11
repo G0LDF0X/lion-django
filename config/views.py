@@ -7,8 +7,11 @@ from django.urls import reverse_lazy
 class HomeView(TemplateView):
     template_name = "home.html"
 
-class UserCreateView():
-    pass
+class UserCreateView(CreateView):
+    template_name = 'registration/register.html'
+    form_class = UserCreationForm
+    success_url = reverse_lazy('register_done')
 
-class UserCreateTV(TemplateView):
-    pass
+class UserCreateDoneTV(TemplateView):
+    template_name = 'registration/register_done.html'
+    
