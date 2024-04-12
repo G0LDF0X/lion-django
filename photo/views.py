@@ -2,8 +2,9 @@ from django.shortcuts import render
 from .models import Album, Photo
 # Create your views here.
 from django.views.generic import ListView, DetailView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-class AlbumLV(ListView):
+class AlbumLV(LoginRequiredMixin, ListView):
     model = Album
     template_name = "photo/object_list.html"
 

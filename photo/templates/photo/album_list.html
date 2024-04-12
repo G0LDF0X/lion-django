@@ -13,7 +13,9 @@
 {% endblock %}
 
 {% block content %}
-
+<h1>Album List</h1>
+{% if user.username == "admin" %}
+{{user}} 님의 앨범입니다.<br>
 {% for album in object_list %}
 <div class="mt-5">
     <a href="{% url 'photo:album_detail' album.id %}" class="h2">{{ album.name }}</a>
@@ -33,4 +35,5 @@
     {% endfor %}
 </div>
 {% endfor %}
+{% endif %}
 {% endblock %}

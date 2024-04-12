@@ -7,7 +7,7 @@
 {% block content %}
 <h1>Bookmark List</h1>
 <br>
-
+{{user}} 님의 북마크입니다.<br><br>
 <ul class="list-group">
     {% for bookmark in object_list %}
     <li class="list-group-item"><a href="{% url 'bookmark:detail' bookmark.id %}">{{ bookmark.title }}</a></li>

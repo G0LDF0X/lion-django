@@ -6,16 +6,18 @@ from django.views.generic import ListView, DetailView, ArchiveIndexView, YearArc
 from django.conf import settings
 from blog.forms import PostSearchForm
 from django.db.models import Q
+from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 
-class PostLV(ListView):
+class PostLV(LoginRequiredMixin, ListView):
+    login_url = '/accounts/login/'
     model = Post
     template_name = 'blog/post_all.html'
     context_object_name = 'posts'
     # paginate_by = 3
 
-    # def get_queryset(self):
-    #     return Post.objects.all()
+    def get_queryset(self):
+        return self.model.objects.all()
 
 # 위의 class PostLV와 동일    
 def dummy_post(request):
@@ -39,7 +41,7 @@ class PostDV(DetailView):
         return context
 
 # --ArchiveView
-class PostAV(ArchiveIndexView):
+class PostAV(LoginRequiredMixin, ArchiveIndexView):
     model = Post
     date_field = "modify_dt"
     template_name = "blog/post_archive.html"
